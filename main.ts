@@ -17,6 +17,12 @@ const beats: string[] = [
 
 const tagline: string = beats.join(" ");
 
+// The gate only accepts 1–100 characters, so refuse to write anything
+// over the cap rather than submitting an entry that can never be judged.
+if (tagline.length > 100) {
+  throw new Error(`tagline is ${tagline.length} characters, over the 100-character cap`);
+}
+
 // The gate counts characters, so the file holds the line and nothing else:
 // no trailing newline, no extra whitespace.
 const outDir = "/output";
